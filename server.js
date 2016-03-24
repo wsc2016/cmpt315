@@ -2,6 +2,7 @@ var express = require('express');
 var stormpath = require('express-stormpath');
 var mysql = require('mysql');
 
+var songs = require('./lib/modules/songs');
 var callouts = require('./lib/modules/callouts');
 var routes = require('./lib/routes');
 
@@ -9,7 +10,7 @@ var routes = require('./lib/routes');
 var db = mysql.createConnection({
   host: '127.0.0.1',
   user: 'root',
-  password: 'prodigus23',
+  password: 'root',
   database: 'collaborama'
 });
 
@@ -47,6 +48,23 @@ app.delete('/callouts/:id', function(req, res){
 
 app.put('/callouts/:id', function(req, res){
   callouts.update(db, req, res);
+});
+
+
+app.get('/songs', function(req, res) {
+  songs.retrieve_all(db, req, res);
+});
+
+app.post('/songs', function(req, res) {
+  songs.create(db, req, res);
+});
+
+app.get('/songs/:id', function(req, res) {
+  songs.retrieve(db, req, res);
+});
+
+app.delete('/songs/:id', function(req, res) {
+  songs.delete(db, req, res);
 });
 /**
  * Stormpath initialization.
