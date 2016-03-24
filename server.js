@@ -2,12 +2,16 @@ var express = require('express');
 var stormpath = require('express-stormpath');
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
+<<<<<<< HEAD
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var favicon = require('serve-favicon');
 var path = require('path');
 
+=======
+>>>>>>> 5fdb0cb38a100afcb9ed6343f0342ba312e6c04a
 
+var songs = require('./lib/modules/songs');
 var callouts = require('./lib/modules/callouts');
 var routes = require('./lib/routes');
 
@@ -15,7 +19,7 @@ var routes = require('./lib/routes');
 var db = mysql.createConnection({
   host: '127.0.0.1',
   user: 'root',
-  password: 'prodigus23',
+  password: 'root',
   database: 'collaborama'
 });
 
@@ -34,6 +38,9 @@ app.set('view engine', 'jade');
 // app.set('views', './lib/views');
 app.set('views', path.join(__dirname, './lib/views'));
 app.locals.siteName = 'Collaborama';
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // API routes
 app.post('/callouts', function(req, res){
@@ -54,6 +61,23 @@ app.delete('/callouts/:id', function(req, res){
 
 app.put('/callouts/:id', function(req, res){
   callouts.update(db, req, res);
+});
+
+
+app.get('/songs', function(req, res) {
+  songs.retrieve_all(db, req, res);
+});
+
+app.post('/songs', function(req, res) {
+  songs.create(db, req, res);
+});
+
+app.get('/songs/:id', function(req, res) {
+  songs.retrieve(db, req, res);
+});
+
+app.delete('/songs/:id', function(req, res) {
+  songs.delete(db, req, res);
 });
 /**
  * Stormpath initialization.

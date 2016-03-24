@@ -21,7 +21,20 @@ CREATE TABLE callouts(
  `created` DATETIME NULL,
   PRIMARY KEY (`id`));
 
+<<<<<<< HEAD:README
 4. Change database password in server.js to match you're own sql persmissions 
+=======
+CREATE TABLE IF NOT EXISTS collaborama.songs(
+id INT NOT NULL AUTO_INCREMENT,
+soundcloudurl VARCHAR(45) NULL,
+songname VARCHAR(45) NULL,
+genre VARCHAR(45) NULL,
+releasedate DATETIME NULL,
+uploaddate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY (id));
+
+4. Change database password in server.js to match you're own sql persmissions \n
+>>>>>>> 5fdb0cb38a100afcb9ed6343f0342ba312e6c04a:README.md
 
 5. run server locally 
 $node server.js

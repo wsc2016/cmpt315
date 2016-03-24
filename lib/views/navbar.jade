@@ -15,8 +15,13 @@ nav.navbar.navbar-default.navbar-static-top
         if user
           li(class='#{nav.Profile}')
             a(href='/profile') My Profile
+<<<<<<< HEAD
           li(class='#{nav.Profile}')
             a(href='/callouts') Callouts
+=======
+          li(class='#{nav.Explore}')
+            a(href='/songs') Explore
+>>>>>>> 5fdb0cb38a100afcb9ed6343f0342ba312e6c04a
       if user
         form(action='/logout', method='POST', id="logout_form")
           ul.nav.navbar-nav.navbar-right
