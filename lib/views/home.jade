@@ -7,7 +7,7 @@ block content
 
   if user
 
-    h2.text-center Welcome Back, #{user.givenName}
+    h2.text-center Welcome Back, #{user.givenName} 
 
   else
 
@@ -15,3 +15,23 @@ block content
   hr
   div.jumbotron
 
+  div.panel.panel-default
+    div.panel-heading.
+      Enter your callout
+    div.panel-body
+      form.form-horizontal(method='post', action='/callouts')
+        
+        div.form-group
+          label.control-label.col-sm-4 
+          div.col-sm-4
+            input.form-control(type='hidden', name='userid', value='1')        
+        
+        div.form-group
+          label.control-label.col-sm-4 
+          div.col-sm-4
+            input.form-control(type='text', name='message')
+        
+
+        div.form-group
+          div.col-sm-offset-4.col-sm-4
+            button.btn.btn-default(type='submit') Post
