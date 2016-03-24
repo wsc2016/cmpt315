@@ -2,14 +2,11 @@ var express = require('express');
 var stormpath = require('express-stormpath');
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
-<<<<<<< HEAD
+
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var favicon = require('serve-favicon');
 var path = require('path');
-
-=======
->>>>>>> 5fdb0cb38a100afcb9ed6343f0342ba312e6c04a
 
 var songs = require('./lib/modules/songs');
 var callouts = require('./lib/modules/callouts');
