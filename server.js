@@ -1,6 +1,7 @@
 var express = require('express');
 var stormpath = require('express-stormpath');
 var mysql = require('mysql');
+var bodyParser = require('body-parser');
 
 var songs = require('./lib/modules/songs');
 var callouts = require('./lib/modules/callouts');
@@ -28,6 +29,9 @@ app.set('trust proxy',true);
 app.set('view engine', 'jade');
 app.set('views', './lib/views');
 app.locals.siteName = 'Collaborama';
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // API routes
 app.post('/callouts', function(req, res){
