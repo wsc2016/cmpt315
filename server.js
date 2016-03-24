@@ -2,7 +2,16 @@
 
 var express = require('express');
 var stormpath = require('express-stormpath');
+var mysql = require('mysql');
 
+var connection = mysql.createConnection({
+	host: 'localhost',
+	user: 'root',
+	password: 'password',
+	database: 'collaborama'
+});
+
+connection.connect();
 var routes = require('./lib/routes');
 
 /**
@@ -37,6 +46,22 @@ app.use('/', routes);
 
 app.on('stormpath.ready',function () {
   console.log('Stormpath Ready');
+});
+
+var callout = {
+	userid: '123',
+	message: 'testing testing',
+	city: 'Edmonton',
+	genre: 'Hiphop',
+	likes: '34',
+}
+connection.query('insert into callouts set ?', callout, function(err, result){
+	console.log(query.sql);
+	if (err){
+		console.error(err);
+		return;
+	}
+	console.error(result);
 });
 
 /**
