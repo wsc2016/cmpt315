@@ -15,15 +15,22 @@ block content
       changes.
     div.panel-body
       form.form-horizontal(method='post')
-        div.form-group
-          label.control-label.col-sm-4 Favorite Color
-          div.col-sm-4
-            input.form-control(type='text', name='favoriteColor', value=user.customData.favoriteColor)
 
         div.form-group
           label.control-label.col-sm-4 Birthday
           div.col-sm-4
             input.form-control(type='text', name='birthday', value=user.customData.birthday)
+
+        div.form-group
+          label.control-label.col-sm-4 City
+          div.col-sm-4
+            input.form-control(type='text', name='city', value=user.customData.city)
+
+        div.form-group
+          label.control-label.col-sm-4 Preferred Genre
+          div.col-sm-4
+            input.form-control(type='text', name='genre', value=user.customData.genre)
+
         div.form-group
           div.col-sm-offset-4.col-sm-4
             button.btn.btn-default(type='submit') Save
