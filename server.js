@@ -10,6 +10,7 @@ var path = require('path');
 
 var songs = require('./lib/modules/songs');
 var callouts = require('./lib/modules/callouts');
+var conversations = require('./lib/modules/conversations')
 var routes = require('./lib/routes');
 
 
@@ -60,7 +61,6 @@ app.put('/callouts/:id', function(req, res){
   callouts.update(db, req, res);
 });
 
-
 app.get('/songs', function(req, res) {
   songs.retrieve_all(db, req, res);
 });
@@ -76,6 +76,23 @@ app.get('/songs/:id', function(req, res) {
 app.delete('/songs/:id', function(req, res) {
   songs.delete(db, req, res);
 });
+
+app.get('/users/:userID/conversations', function(req,res){
+  conversations.retrieve_conversations(db,req,res);
+});
+
+app.post('/users/:userID/conversations', function(req,res){
+  conversations.create_conversation(db,req,res);
+});
+
+app.get('/users/:userID/conversations/:conversationID', function(req,res){
+  conversations.retrieve_messages(db,req,res);
+});
+
+app.post('/users/:userID/conversations/:conversationID', function(req,res){
+  conversations.create_message(db,req,res);
+});
+
 /**
  * Stormpath initialization.
  */
