@@ -1,0 +1,27 @@
+extends ./layout.jade
+
+block content
+	h1 Explore
+	h3= title
+	script(src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js")
+	div.panel.panel-default
+		div.panel-heading.
+			!{name}
+		div.panel-body
+			script.
+				var track_url = !{url};
+				track_url = 'http://' + track_url;
+				console.log(track_url);
+				SC.initialize({
+					client_id: '29ad85914f56b3fbb4438ec12a6cd48a'
+				});
+
+				SC.resolve(track_url).then(function(resolved) {
+					console.log('resolve response: ', resolved);
+					SC.stream('/tracks/' + resolved.id).then(function(player){
+					  player.play();
+					});
+				});
+			form(action='/explore', method='GET')
+				button.btn.btn-default(type='submit') Next
+
