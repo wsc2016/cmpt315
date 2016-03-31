@@ -7,7 +7,7 @@ block content
 
   if user
 
-    h2.text-center Welcome Back, #{user.givenName} 
+    h2.text-center Welcome Back, #{user.givenName}, #{user.customData.city}
 
   else
 
@@ -24,8 +24,18 @@ block content
         div.form-group
           label.control-label.col-sm-4 
           div.col-sm-4
-            input.form-control(type='hidden', name='userid', value='1')        
-        
+            input.form-control(type='hidden', name='userid', value='#{user.href}')        
+
+        div.form-group
+          label.control-label.col-sm-4 
+          div.col-sm-4
+            input.form-control(type='hidden', name='city', value='#{user.customData.city}')        
+
+        div.form-group
+          label.control-label.col-sm-4 
+          div.col-sm-4
+            input.form-control(type='hidden', name='genre', value='#{user.customData.genre}')        
+                        
         div.form-group
           label.control-label.col-sm-4 
           div.col-sm-4

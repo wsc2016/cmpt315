@@ -14,7 +14,7 @@ USE collaborama;
 
 CREATE TABLE IF NOT EXISTS callouts(
   `id` INT NOT NULL AUTO_INCREMENT,
-  `userid` INT NULL,
+  `userid` VARCHAR(256) NULL,
   `message` VARCHAR(256) NULL,
   `city` VARCHAR(45) NULL,
   `genre` VARCHAR(45) NULL,
