@@ -7,41 +7,43 @@ block content
 
   if user
 
-    h2.text-center Welcome Back, #{user.givenName}, #{user.customData.city}
+    h2.text-center Welcome Back, #{user.givenName}
+
+    hr
+
+    div.panel.panel-default
+      div.panel-heading.
+        Enter your callout
+      div.panel-body
+        form.form-horizontal(method='post', action='/callouts')
+          
+          div.form-group
+            label.control-label.col-sm-4 
+            div.col-sm-4
+              input.form-control(type='hidden', name='userid', value='#{user.href}')        
+
+          div.form-group
+            label.control-label.col-sm-4 
+            div.col-sm-4
+              input.form-control(type='hidden', name='city', value='#{user.customData.city}')        
+
+          div.form-group
+            label.control-label.col-sm-4 
+            div.col-sm-4
+              input.form-control(type='hidden', name='genre', value='#{user.customData.genre}')        
+                          
+          div.form-group
+            label.control-label.col-sm-4 
+            div.col-sm-4
+              input.form-control(type='text', name='message')
+          
+
+          div.form-group
+            div.col-sm-offset-4.col-sm-4
+              button.btn.btn-default(type='submit') Post
 
   else
 
-    h2.text-center Welcome!
-  hr
-  div.jumbotron
+    h2.text-center Welcome To Collaborama!
+    h4.text-center Come meet and collaborate with artists in your neightborehood!
 
-  div.panel.panel-default
-    div.panel-heading.
-      Enter your callout
-    div.panel-body
-      form.form-horizontal(method='post', action='/callouts')
-        
-        div.form-group
-          label.control-label.col-sm-4 
-          div.col-sm-4
-            input.form-control(type='hidden', name='userid', value='#{user.href}')        
-
-        div.form-group
-          label.control-label.col-sm-4 
-          div.col-sm-4
-            input.form-control(type='hidden', name='city', value='#{user.customData.city}')        
-
-        div.form-group
-          label.control-label.col-sm-4 
-          div.col-sm-4
-            input.form-control(type='hidden', name='genre', value='#{user.customData.genre}')        
-                        
-        div.form-group
-          label.control-label.col-sm-4 
-          div.col-sm-4
-            input.form-control(type='text', name='message')
-        
-
-        div.form-group
-          div.col-sm-offset-4.col-sm-4
-            button.btn.btn-default(type='submit') Post
