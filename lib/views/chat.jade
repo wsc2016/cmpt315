@@ -16,5 +16,6 @@ script(src='/../socket.io/socket.io.js')
 script(type='text/javascript').
     var socket=io();
 ul.chat-sidebar(ng-controller="chatCtrl")
-    li.sidebar-name(ng-repeat="name in names") {{ name.firstName}} {{ name.lastName }}
-        a(href="javascript:register_popup( {{ name.firstName}}, {{ name.lastName }} );")
+    li.sidebar-name(ng-repeat="name in names")
+        p(ng-click="make_popup(name.firstName+'-'+name.lastName,name.firstName+' '+name.lastName,$event)")
+            {{name.firstName}} {{name.lastName}}
