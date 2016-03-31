@@ -17,6 +17,12 @@ block content
       form.form-horizontal(method='post')
 
         div.form-group
+          label.control-label.col-sm-4 Phone Number
+          div.col-sm-4
+            input.form-control(type='text', name='phoneNumber', value=user.customData.phoneNumber)
+
+
+        div.form-group
           label.control-label.col-sm-4 Birthday
           div.col-sm-4
             input.form-control(type='text', name='birthday', value=user.customData.birthday)
