@@ -1,41 +1,20 @@
 //
    Created by Carla on 2016-03-29.
-
+//
+doctype html
+html(ng-app='myApp')
+    //http://qnimate.com/facebook-style-chat-box-popup-using-javascript-and-css/
+//script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js')
+script(src='/angular/angular.min.js')
 link(href='/css/chat.css', rel='stylesheet')
+//Popups
 script(src='/modules/chat.js')
-
-
-<body>
-div.chat-sidebar
-    div.sidebar-name
-    <!-- Pass username and display name to register popup -->
-    <a href="javascript:register_popup('narayan-prusty', 'Narayan Prusty');">
-    <img width="30" height="30" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p50x50/1510656_10203002897620130_521137935_n.jpg?oh=572eaca929315b26c58852d24bb73310&oe=54BEE7DA&__gda__=1418131725_c7fb34dd0f499751e94e77b1dd067f4c" />
-    <span>Narayan Prusty</span>
-    </a>
-    div.sidebar-name
-    <a href="javascript:register_popup('qnimate', 'QNimate');">
-    <img width="30" height="30" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p50x50/1510656_10203002897620130_521137935_n.jpg?oh=572eaca929315b26c58852d24bb73310&oe=54BEE7DA&__gda__=1418131725_c7fb34dd0f499751e94e77b1dd067f4c" />
-    <span>QNimate</span>
-    </a>
-    div.sidebar-name
-    <a href="javascript:register_popup('qscutter', 'QScutter');">
-    <img width="30" height="30" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p50x50/1510656_10203002897620130_521137935_n.jpg?oh=572eaca929315b26c58852d24bb73310&oe=54BEE7DA&__gda__=1418131725_c7fb34dd0f499751e94e77b1dd067f4c" />
-    <span>QScutter</span>
-    </a>
-    div.sidebar-name
-    <a href="javascript:register_popup('qidea', 'QIdea');">
-    <img width="30" height="30" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p50x50/1510656_10203002897620130_521137935_n.jpg?oh=572eaca929315b26c58852d24bb73310&oe=54BEE7DA&__gda__=1418131725_c7fb34dd0f499751e94e77b1dd067f4c" />
-    <span>QIdea</span>
-    </a>
-    div.sidebar-name
-    <a href="javascript:register_popup('qazy', 'QAzy');">
-    <img width="30" height="30" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p50x50/1510656_10203002897620130_521137935_n.jpg?oh=572eaca929315b26c58852d24bb73310&oe=54BEE7DA&__gda__=1418131725_c7fb34dd0f499751e94e77b1dd067f4c" />
-    <span>QAzy</span>
-    </a>
-    div.sidebar-name
-    <a href="javascript:register_popup('qblock', 'QBlock');">
-    <img width="30" height="30" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p50x50/1510656_10203002897620130_521137935_n.jpg?oh=572eaca929315b26c58852d24bb73310&oe=54BEE7DA&__gda__=1418131725_c7fb34dd0f499751e94e77b1dd067f4c" />
-    <span>QBlock</span>
-    </a>
-</body>
+//Angular
+script(src='/modules/chatController.js')
+//socket.io
+script(src='/../socket.io/socket.io.js')
+script(type='text/javascript').
+    var socket=io();
+ul.chat-sidebar(ng-controller="chatCtrl")
+    li.sidebar-name(ng-repeat="name in names") {{ name.firstName}} {{ name.lastName }}
+        a(href="javascript:register_popup( {{ name.firstName}}, {{ name.lastName }} );")

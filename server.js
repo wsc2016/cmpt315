@@ -8,6 +8,8 @@ var cookieParser = require('cookie-parser');
 var favicon = require('serve-favicon');
 var path = require('path');
 
+
+
 var songs = require('./lib/modules/songs');
 var callouts = require('./lib/modules/callouts');
 var conversations = require('./lib/modules/conversations')
@@ -21,12 +23,13 @@ var db = mysql.createConnection({
   database: 'collaborama'
 });
 
-// connection.connect();
-
 /**
- * Create the Express application.
+ * Create the Express application and socket.io server.
  */
+//var app = express()
 var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
 /**
  * Application settings.
@@ -113,6 +116,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'lib')));
+app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use('/', routes);
 
 app.on('stormpath.ready',function () {
@@ -149,11 +153,18 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
 /**
- * Start the web server.
+ * Handle chat connection
  */
-var port = process.env.PORT || 3000;
-app.listen(port, function () {
-  console.log('Server listening on http://localhost:' + port);
+io.on('connection',function(socket){
+  console.log('a user connected');
 });
 
+/**
+ * Start the web server. server.listen not app.listen for chat.io
+ */
+var port = process.env.PORT || 3000;
+server.listen(port,function(){
+  console.log('Server listening on http://localhost:' + port);
+});

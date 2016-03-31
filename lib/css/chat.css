@@ -22,11 +22,13 @@ body
     position: fixed;
     height: 100%;
     right: 0px;
+    background-color: white;
     /*float:right;*/
-    top: 0px;
+    top: 50px;/*originally 0*/
     padding-top: 10px;
     padding-bottom: 10px;
     border: 1px solid rgba(29, 49, 91, .3);
+    list-style: none;
 }
 
 .sidebar-name
@@ -37,12 +39,12 @@ body
     font-size: 12px;
     /*float:right*/;
 }
-
+/*
 .sidebar-name span
 {
-    padding-left: 5px;
+    padding-left: 0px;previously 5
 }
-
+*/
 .sidebar-name a
 {
     display: block;
