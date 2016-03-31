@@ -1,0 +1,24 @@
+extends ./layout.jade
+
+block content
+	h1 Music
+	h3= title
+	script(src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js")
+	div.container
+		div.content
+			table.table.table-hover
+				thead
+					tr
+						th
+						each key in keys
+							th= key
+				tbody
+					- var count = 0
+					each entry in entries
+						tr
+							td
+								form(action='/music/' + entries[count].id, method='GET')
+									button.btn.btn-default(type='submit') >
+							each val in entry
+								td= val
+						- count+=1
