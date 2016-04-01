@@ -30,7 +30,5 @@ div.popup-box.chat-popup(id="id" ng-controller="chatPopupCtrl" ng-show="showpopu
             li.messages(ng-repeat="message in messages")
                 {{message.firstName}}:  {{message.content}}
     div.popup-tail
-        input.text-box(type="text" id="textinput" ng-enter="send_message(messages[0].conversationID)")
-        button.send-button(ng-click="send_message(messages[0].conversationID)") Send
-//user.email
-        //href="javascript:close_popup(\''id'\')
+        input.text-box(type="text" id="textinput" ng-enter="send_message(conversationID)")
+        button.send-button(ng-click="send_message(conversationID)") Send
