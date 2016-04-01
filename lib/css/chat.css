@@ -4,11 +4,12 @@
     {
         display: none !important;
     }
-
+/*
     .chat-popup
     {
-        display: none !important;
+     display: none !important;
     }
+    */
 }
 
 body
@@ -67,7 +68,7 @@ body
 
 .popup-box
 {
-    display: none;
+    /*display: none;*/
     position: fixed;
     bottom: 0px;
     right: 220px;
