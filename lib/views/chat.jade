@@ -18,18 +18,18 @@ script(type='text/javascript').
 ul.chat-sidebar(ng-controller="chatSidebarCtrl")
     li.sidebar-name(ng-repeat="name in names")
         //p(ng-click="make_popup(name.firstName+'-'+name.lastName,name.firstName+' '+name.lastName,$event)")
-        p(ng-click="make_popup(name.firstName+'-'+name.lastName,name.firstName+' '+name.lastName,$event)")
+        p(ng-click="make_popup(name.firstName+'-'+name.lastName,name.firstName+' '+name.lastName)")
             {{name.firstName}} {{name.lastName}}
 
 
 div.popup-box.chat-popup(id="id" ng-controller="chatPopupCtrl" ng-show="showpopup")
     div.popup-head
-        div.popup-head-left '++ name ++'
+        div.popup-head-left {{popupName}}
         div.popup-head-right
             a(ng-click="close_popup()", href="" ) ✕
         div(style='clear: both')
     div.popup-messages
-        input.text-box(type="text", placeholder="blahblahblah")
+        input.text-box(type="text" id="textinput")
         button.send-button(ng-click="count=count+1" ng-init="count=0") Send
 
         //href="javascript:close_popup(\''id'\')
