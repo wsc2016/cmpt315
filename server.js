@@ -31,6 +31,18 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
 /**
+ * Stormpath initialization.
+ */
+
+console.log('Initializing Stormpath');
+
+app.use(stormpath.init(app, {
+  expand: {
+    customData: true
+  }
+}));
+
+/**
  * Application settings.
  */
 app.set('trust proxy',true);
@@ -79,7 +91,7 @@ app.delete('/songs/:id', function(req, res) {
   songs.delete(db, req, res);
 });
 
-app.get('/users/:userID/conversations', function(req,res){
+app.get('/users/:userID/conversations',stormpath.getUser, function(req,res){
   conversations.retrieve_conversations(db,req,res);
 });
 
@@ -87,25 +99,15 @@ app.post('/users/:userID/conversations', function(req,res){
   conversations.create_conversation(db,req,res);
 });
 
-app.get('/users/:userID/conversations/:conversationID', function(req,res){
+app.get('/users/:userID/conversations/:conversationID',stormpath.getUser, function(req,res){
+  //console.log("THE CONVERSATION ID IS: "+req.params.conversationID);
   conversations.retrieve_messages(db,req,res);
 });
 
-app.post('/users/:userID/conversations/:conversationID', function(req,res){
+app.post('/users/:userID/conversations/:conversationID',stormpath.getUser, function(req,res){
   conversations.create_message(db,req,res);
 });
 
-/**
- * Stormpath initialization.
- */
-
-console.log('Initializing Stormpath');
-
-app.use(stormpath.init(app, {
-  expand: {
-    customData: true
-  }
-}));
 
 /**
  * Route initialization.

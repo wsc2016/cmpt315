@@ -30,6 +30,7 @@ body
     padding-bottom: 10px;
     border: 1px solid rgba(29, 49, 91, .3);
     list-style: none;
+    overflow-y: scroll;
 }
 
 .sidebar-name
@@ -88,6 +89,10 @@ body
     clear: both;
 }
 
+.popup-box .popup-tail
+{
+    background-color: #6d84b4;
+}
 .popup-box .popup-head .popup-head-left
 {
     float: left;
@@ -107,20 +112,41 @@ body
 
 .popup-box .popup-messages
 {
-    height: 100%;
+    height: 78%;
     overflow-y: scroll;
 }
 
-.text-box
+.popup-box .popup-tail .text-box
 {
     width: 85%;
     bottom: 0;
     position: absolute;
+    border:thin;
+    border-color:gainsboro;
+    border-style:solid;
 }
 
-.send-button
+.popup-box .popup-tail .send-button
 {
     bottom:0;
     right:0;
     position:absolute;
+    height:31px;
+}
+
+.messages
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.messages li
+{
+    padding: 5px 10px;
+}
+
+.messages li:nth-child(odd)
+{
+    background: #ffffff;
 }
