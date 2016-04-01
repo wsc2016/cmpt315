@@ -26,6 +26,9 @@ div.popup-box.chat-popup(id="id" ng-controller="chatPopupCtrl" ng-show="showpopu
     div.popup-head
         div.popup-head-left '++ name ++'
         div.popup-head-right
-            a(href="javascript:close_popup(\''id'\');" ) ✕
+            a(ng-click="close_popup()", href="" ) ✕
         div(style='clear: both')
     div.popup-messages
+        input.text-box(type="text", placeholder="blahblahblah")
+
+        //href="javascript:close_popup(\''id'\')
