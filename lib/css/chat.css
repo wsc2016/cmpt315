@@ -113,7 +113,14 @@ body
 
 .text-box
 {
-    width: 100%;
+    width: 85%;
     bottom: 0;
     position: absolute;
+}
+
+.send-button
+{
+    bottom:0;
+    right:0;
+    position:absolute;
 }

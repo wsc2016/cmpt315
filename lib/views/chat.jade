@@ -30,5 +30,6 @@ div.popup-box.chat-popup(id="id" ng-controller="chatPopupCtrl" ng-show="showpopu
         div(style='clear: both')
     div.popup-messages
         input.text-box(type="text", placeholder="blahblahblah")
+        button.send-button(ng-click="count=count+1" ng-init="count=0") Send
 
         //href="javascript:close_popup(\''id'\')
