@@ -3,22 +3,57 @@ extends ./layout.jade
 block content
 	h1 Music
 	h3= title
-	script(src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js")
 	div.container
 		div.content
+			form.form-horizontal(method='get', action='/music')
+				div.form-group
+					div.col-sm-4
+						label.control-label.col-sm-4 Genre
+						select.form-control(type='text', name='genre')
+							option(value='')
+							each entry in unique_genres
+								if default_genre == entry
+									option(selected="selected", value=entry) !{entry}
+								else
+									option(value=entry) !{entry}
+					div.col-sm-4
+						label.control-label.col-sm-4 City
+						select.form-control(type='text', name='city')
+							option(value='')
+							each entry in unique_cities
+								if default_city == entry
+									option(selected="selected", value=entry) !{entry}
+								else
+									option(value=entry) !{entry}
+					div.col-sm-4
+						br
+						button.btn.btn-default(type='submit') Search
+
+					- var i = 0
+					while i < 5
+						br
+						- i += 1
+
+
 			table.table.table-hover
 				thead
 					tr
 						th
-						each key in keys
-							th= key
+						th Song Name
+						th Genre
+						th City
+						th Soundcloud
 				tbody
-					- var count = 0
-					each entry in entries
+					each entry in query_entries
 						tr
 							td
-								form(action='/music/' + entries[count].id, method='GET')
-									button.btn.btn-default(type='submit') >
-							each val in entry
-								td= val
-						- count+=1
+								form(action='/explore/' + entry.id, method='GET')
+									button.btn.btn-default(type='submit')
+										span.glyphicon.glyphicon-headphones 
+										|  Listen
+
+							td !{entry.songname}
+							td !{entry.genre}
+							td !{entry.city}
+							td !{entry.soundcloudurl}
+							
