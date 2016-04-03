@@ -1,0 +1,12 @@
+extends ./layout.jade
+
+block vars
+  - var title = 'Callouts'
+
+block content
+
+  if user
+
+    h2.text-center See What Happening in #{user.customData.city}
+
+    hr
