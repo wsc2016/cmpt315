@@ -1,0 +1,59 @@
+extends ./layout.jade
+
+block content
+	h1 Music
+	h3= title
+	div.container
+		div.content
+			form.form-horizontal(method='get', action='/music')
+				div.form-group
+					div.col-sm-4
+						label.control-label.col-sm-4 Genre
+						select.form-control(type='text', name='genre')
+							option(value='')
+							each entry in unique_genres
+								if default_genre == entry
+									option(selected="selected", value=entry) !{entry}
+								else
+									option(value=entry) !{entry}
+					div.col-sm-4
+						label.control-label.col-sm-4 City
+						select.form-control(type='text', name='city')
+							option(value='')
+							each entry in unique_cities
+								if default_city == entry
+									option(selected="selected", value=entry) !{entry}
+								else
+									option(value=entry) !{entry}
+					div.col-sm-4
+						br
+						button.btn.btn-default(type='submit') Search
+
+					- var i = 0
+					while i < 5
+						br
+						- i += 1
+
+
+			table.table.table-hover
+				thead
+					tr
+						th
+						th Song Name
+						th Genre
+						th City
+						th Soundcloud
+				tbody
+					each entry in query_entries
+						tr
+							td
+								form(action='/explore/' + entry.id, method='GET')
+									button.btn.btn-default(type='submit')
+										span.glyphicon.glyphicon-headphones 
+										|  Listen
+
+							td !{entry.songname}
+							td !{entry.genre}
+							td !{entry.city}
+							td !{entry.soundcloudurl}
+							
