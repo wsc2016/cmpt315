@@ -48,9 +48,9 @@ app.post('/callouts', function(req, res){
   callouts.create(db, req, res);
 });
 
-app.get('/callouts', function(req, res){
-  callouts.retrieve(db, req, res);
-});
+// app.get('/callouts', function(req, res){
+//   callouts.retrieve(db, req, res);
+// });
 
 app.get('/callouts/:id', function(req, res){
   callouts.retrieve(db, req, res);
