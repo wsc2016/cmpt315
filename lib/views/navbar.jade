@@ -19,8 +19,11 @@ nav.navbar.navbar-default.navbar-static-top
           li(class='#{nav.Profile}')
             a(href='/callouts') Callouts
 
+          li(class='#{nav.Music}')
+            a(href='/music') Music
+
           li(class='#{nav.Explore}')
-            a(href='/songs') Explore
+            a(href='/explore') Explore
 
       if user
         form(action='/logout', method='POST', id="logout_form")
