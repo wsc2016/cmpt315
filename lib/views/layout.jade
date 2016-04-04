@@ -2,12 +2,13 @@ block vars
   - var title
 
 doctype html
-html(lang='en')
+html(lang='en' ng-app)
   head
     block title
       title=title ? (siteName + ' - ' + title) : siteName
     block css
-      link(href='https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/paper/bootstrap.min.css', rel='stylesheet')
+      link(href='css/main.css', rel='stylesheet')
+      link(href='css/bootstrap.css', rel='stylesheet')
     block js
       script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js')
       script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')
@@ -15,5 +16,7 @@ html(lang='en')
     include navbar
     if user
       include chat
-    div.container
+    else
+      div.home
+    div.container 
       block content
