@@ -2,7 +2,7 @@ block vars
   - var title
 
 doctype html
-html(lang='en')
+html(lang='en' ng-app)
   head
     block title
       title=title ? (siteName + ' - ' + title) : siteName
@@ -18,5 +18,5 @@ html(lang='en')
       include chat
     else
       div.home
-    div.container
+    div.container 
       block content

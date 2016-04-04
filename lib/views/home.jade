@@ -11,7 +11,7 @@ block content
 
     hr
 
-    div.panel.panel-default
+    div.panel.panel-info
       div.panel-heading.
         Enter your callout
       div.panel-body
@@ -20,7 +20,12 @@ block content
           div.form-group
             label.control-label.col-sm-4 
             div.col-sm-4
-              input.form-control(type='hidden', name='userid', value='#{user.href}')        
+              input.form-control(type='hidden', name='userid', value='#{user.email}')        
+
+          div.form-group
+            label.control-label.col-sm-4 
+            div.col-sm-4
+              input.form-control(type='hidden', name='fullName', value='#{user.fullName}')        
 
           div.form-group
             label.control-label.col-sm-4 

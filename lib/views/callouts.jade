@@ -1,12 +1,19 @@
 extends ./layout.jade
 
 block vars
-  - var title = 'Callouts'
+	- var title = 'Callouts'
 
 block content
 
-  if user
+	if user
 
-    h2.text-center See What Happening in #{user.customData.city}
+		h2.text-center See Whats Happening in #{user.customData.city}
 
-    hr
+
+		div.callouts
+			div.panel-body
+				each val in JSON.parse(messages)
+					div.panel.panel-info
+						div.panel-heading.= val.name
+						div.panel-body= val.message
+	hr
