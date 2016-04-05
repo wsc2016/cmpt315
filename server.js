@@ -18,7 +18,7 @@ var routes = require('./lib/routes');
 var db = mysql.createConnection({
   host: '127.0.0.1',
   user: 'root',
-  password: 'root',
+  password: 'prodigus23',
   database: 'collaborama'
 });
 
