@@ -9,10 +9,10 @@ var favicon = require('serve-favicon');
 var path = require('path');
 
 
-
+var users = require('./lib/modules/users');
 var songs = require('./lib/modules/songs');
 var callouts = require('./lib/modules/callouts');
-var conversations = require('./lib/modules/conversations')
+var conversations = require('./lib/modules/conversations');
 var routes = require('./lib/routes');
 
 var db = mysql.createConnection({
@@ -39,7 +39,30 @@ console.log('Initializing Stormpath');
 app.use(stormpath.init(app, {
   expand: {
     customData: true
+  },
+  web: {
+    register: {
+      form:{
+        fields:{
+          city:{
+            enabled: true,
+            label: 'City',
+            name: 'city',
+            required: true,
+            type: 'text'
+          },
+          genre:{
+            enabled: true,
+            label: 'Preferred Genre',
+            name: 'genre',
+            required: true,
+            type: 'text'
+          },
+        }  
+      }
+    }
   }
+
 }));
 
 /**
@@ -73,6 +96,10 @@ app.post('/callouts', function(req, res){
 
 app.put('/callouts/:id', function(req, res){
   callouts.update(db, req, res);
+});
+
+app.post('/users', function(req, res){
+  users.update(db, req, res);
 });
 
 app.get('/songs', function(req, res) {
