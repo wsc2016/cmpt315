@@ -55,6 +55,7 @@ firstName VARCHAR(25) NOT NULL,
 lastName VARCHAR(25) NOT NULL,
 PRIMARY KEY (id));
 
+
 <<<<<<< HEAD:README
 4. Change database password in server.js to match you're own sql persmissions 
 =======
