@@ -3,18 +3,30 @@
 //
 doctype html
 html(ng-app='myApp')
-    //http://qnimate.com/facebook-style-chat-box-popup-using-javascript-and-css/
-//script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js')
+//http://qnimate.com/facebook-style-chat-box-popup-using-javascript-and-css/
 script(src='/angular/angular.min.js')
 link(href='/css/chat.css', rel='stylesheet')
-//Popups
-script(src='/modules/chat.js')
 //Angular
 script(src='/modules/chatController.js')
 //socket.io
 script(src='/../socket.io/socket.io.js')
 script(type='text/javascript').
     var socket=io();
-ul.chat-sidebar(ng-controller="chatCtrl")
-    li.sidebar-name(ng-repeat="name in names") {{ name.firstName}} {{ name.lastName }}
-        a(href="javascript:register_popup( {{ name.firstName}}, {{ name.lastName }} );")
+ul.chat-sidebar(ng-controller="chatSidebarCtrl")
+    li.sidebar-name(ng-repeat="name in names")
+        p(ng-click="make_popup(name.conversationID,name.firstName+' '+name.lastName)")
+             {{name.firstName}} {{name.lastName}}
+
+div.popup-box.chat-popup(id="id" ng-controller="chatPopupCtrl" ng-show="showpopup")
+    div.popup-head
+        div.popup-head-left {{popupName}}
+        div.popup-head-right
+            a(ng-click="close_popup()", href="" ) ✕
+        div(style='clear: both')
+    div.popup-messages(ng-scroll-bottom="messages")
+        ul.messages
+            li.messages(ng-repeat="message in messages")
+                 {{message.firstName}}:  {{message.content}}
+    div.popup-tail
+        input.text-box(type="text" id="textinput" ng-enter="send_message(conversationID)")
+        button.send-button(ng-click="send_message(conversationID)") Send
