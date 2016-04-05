@@ -6,8 +6,6 @@ html(ng-app='myApp')
     //http://qnimate.com/facebook-style-chat-box-popup-using-javascript-and-css/
 script(src='/angular/angular.min.js')
 link(href='/css/chat.css', rel='stylesheet')
-//Popups - ACTUALLY NECESSARY
-script(src='/modules/chat.js')
 //Angular
 script(src='/modules/chatController.js')
 //socket.io
@@ -17,7 +15,7 @@ script(type='text/javascript').
 ul.chat-sidebar(ng-controller="chatSidebarCtrl")
     li.sidebar-name(ng-repeat="name in names")
         p(ng-click="make_popup(name.conversationID,name.firstName+' '+name.lastName)")
-            {{name.firstName}} {{name.lastName}}
+             {{name.firstName}} {{name.lastName}}
 
 div.popup-box.chat-popup(id="id" ng-controller="chatPopupCtrl" ng-show="showpopup")
     div.popup-head
@@ -28,7 +26,7 @@ div.popup-box.chat-popup(id="id" ng-controller="chatPopupCtrl" ng-show="showpopu
     div.popup-messages(ng-scroll-bottom="messages")
         ul.messages
             li.messages(ng-repeat="message in messages")
-                {{message.firstName}}:  {{message.content}}
+                 {{message.firstName}}:  {{message.content}}
     div.popup-tail
         input.text-box(type="text" id="textinput" ng-enter="send_message(conversationID)")
         button.send-button(ng-click="send_message(conversationID)") Send
