@@ -35,5 +35,44 @@ block content
 						div.form-group
 							div.col-sm-offset-4.col-sm-4
 								button.btn.btn-default(type='submit') Save
+			div.panel.panel-secondary
+				div.panel-heading.
+					Add or remove songs below
+				div.panel-body
+					form.form-horizontal(method='post', action='/songs')
 
+							div.form-group
+								label.control-label.col-sm-4 Soundcloud URL
+								div.col-sm-4
+									input.form-control(type='text', name='soundCloudURL')
+									input.form-control(type='hidden', name='userID', value=userid)
+								div.col-sm-4
+									button.btn.btn-default(type='submit')
+										span.glyphicon.glyphicon-plus
 
+					table.table.table-hover
+						thead
+							tr
+								th
+								th Song Name
+								th Genre
+								th City
+								th Soundcloud
+								th
+						tbody
+							each entry in query_entries
+								tr
+
+									td
+										form(action='/music/' + entry.id, method='GET')
+											button.btn.btn-default(type='submit')
+												span.glyphicon.glyphicon-headphones 
+												|  Listen
+									td !{entry.songname}
+									td !{entry.genre}
+									td !{entry.city}
+									td !{entry.soundcloudurl}
+									td
+										form(action='/songs/' + entry.id + '?_method=DELETE', method='POST')
+											button.btn.btn-default(type='submit')
+												span.glyphicon.glyphicon-minus
