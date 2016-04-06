@@ -81,21 +81,18 @@ app.post('/callouts', function(req, res){
   callouts.create(db, req, res);
 });
 
-// app.get('/callouts', function(req, res){
-//   callouts.retrieve(db, req, res);
-// });
 
 // app.get('/callouts/:id', function(req, res){
 //   callouts.retrieve(db, req, res);
 // });
 
-// app.delete('/callouts/:id', function(req, res){
-//   callouts.delete(db, req, res);
-// });
-
-app.put('/callouts/:id', function(req, res){
-  callouts.update(db, req, res);
+app.delete('/callouts/:id', function(req, res){
+  callouts.delete(db, req, res);
 });
+
+// app.put('/callouts/:id', function(req, res){
+//   callouts.update(db, req, res);
+// });
 
 
 app.get('/songs', function(req, res) {
@@ -141,6 +138,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'lib')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
+app.use(express.static(path.join(__dirname, 'lib/css')));
 app.use('/', routes);
 
 app.on('stormpath.ready',function () {
