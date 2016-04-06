@@ -9,7 +9,6 @@ var favicon = require('serve-favicon');
 var path = require('path');
 
 
-var users = require('./lib/modules/users');
 var songs = require('./lib/modules/songs');
 var callouts = require('./lib/modules/callouts');
 var conversations = require('./lib/modules/conversations');
@@ -98,9 +97,6 @@ app.put('/callouts/:id', function(req, res){
   callouts.update(db, req, res);
 });
 
-app.post('/users', function(req, res){
-  users.update(db, req, res);
-});
 
 app.get('/songs', function(req, res) {
   songs.retrieve_all(db, req, res);
