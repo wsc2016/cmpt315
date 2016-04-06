@@ -6,23 +6,15 @@ block vars
 block content
 
 	if user
-
-		div.callouts
-			div.panel-body
-				each val in JSON.parse(messages)
+		each val in JSON.parse(messages)
+			div.callouts
+				div.panel-body					
 					div.panel.panel-info
-						div.panel-heading.= val.name
+						div.panel-heading.= val.name 
 						div.panel-body= val.message
-
-						form.form-horizontal(method='delete', action='/callouts')
-
-							div.form-group
-								label.control-label.col-sm-4 
-								div.col-sm-4
-									input.form-control(type='hidden', name='id', value='val.id')        
-
-
-							div.form-group
-								div.col-sm-offset-4.col-sm-4
-									button.btn.btn-danger(type='submit') Delete
+						if own
+							a(href='delete/'+val.id)
+								div.form-group
+									div.col-sm-offset-4.col-sm-4
+										button.btn.btn-danger(type='submit') Delete	
 
