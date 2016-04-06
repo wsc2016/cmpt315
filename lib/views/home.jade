@@ -7,46 +7,46 @@ block content
 
   if user
 
-    h2.text-center Welcome Back, #{user.givenName}
+    h3.text-center Welcome Back, #{user.givenName}
 
-    hr
+    form.form-horizontal(method='post', action='/callouts')
 
-    div.panel.panel-info
-      div.panel-heading.
-        Enter your callout
+      div.form-group
+        label.control-label.col-sm-4 
+        div.col-sm-4
+          input.form-control(type='hidden', name='userid', value='#{user.email}')        
+
+      div.form-group
+        label.control-label.col-sm-4 
+        div.col-sm-4
+          input.form-control(type='hidden', name='fullName', value='#{user.fullName}')        
+
+      div.form-group
+        label.control-label.col-sm-4 
+        div.col-sm-4
+          input.form-control(type='hidden', name='city', value='#{user.customData.city}')        
+
+      div.form-group
+        label.control-label.col-sm-4 
+        div.col-sm-4
+          input.form-control(type='hidden', name='genre', value='#{user.customData.genre}')        
+                      
+      div.form-group
+        label.control-label.col-sm-4 
+        div.col-sm-4
+          input.form-control(type='text', name='message', placeholder="Tell #{user.customData.city} What's Up")
+      
+
+      div.form-group
+        div.col-sm-offset-4.col-sm-4
+          button.btn.btn-default(type='submit') Post
+
+    div.callouts
       div.panel-body
-        form.form-horizontal(method='post', action='/callouts')
-          
-          div.form-group
-            label.control-label.col-sm-4 
-            div.col-sm-4
-              input.form-control(type='hidden', name='userid', value='#{user.email}')        
-
-          div.form-group
-            label.control-label.col-sm-4 
-            div.col-sm-4
-              input.form-control(type='hidden', name='fullName', value='#{user.fullName}')        
-
-          div.form-group
-            label.control-label.col-sm-4 
-            div.col-sm-4
-              input.form-control(type='hidden', name='city', value='#{user.customData.city}')        
-
-          div.form-group
-            label.control-label.col-sm-4 
-            div.col-sm-4
-              input.form-control(type='hidden', name='genre', value='#{user.customData.genre}')        
-                          
-          div.form-group
-            label.control-label.col-sm-4 
-            div.col-sm-4
-              input.form-control(type='text', name='message')
-          
-
-          div.form-group
-            div.col-sm-offset-4.col-sm-4
-              button.btn.btn-default(type='submit') Post
-
+        each val in JSON.parse(messages)
+          div.panel.panel-info
+            div.panel-heading.= val.name
+            div.panel-body= val.message
 
 
 
