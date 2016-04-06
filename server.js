@@ -8,24 +8,61 @@ var cookieParser = require('cookie-parser');
 var favicon = require('serve-favicon');
 var path = require('path');
 
+
 var songs = require('./lib/modules/songs');
 var callouts = require('./lib/modules/callouts');
+var conversations = require('./lib/modules/conversations');
 var routes = require('./lib/routes');
-
 
 var db = mysql.createConnection({
   host: '127.0.0.1',
   user: 'root',
-  password: 'root',
+  password: 'needforspeed666',
   database: 'collaborama'
 });
 
-// connection.connect();
+/**
+ * Create the Express application and socket.io server.
+ */
+//var app = express()
+var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
 /**
- * Create the Express application.
+ * Stormpath initialization.
  */
-var app = express();
+
+console.log('Initializing Stormpath');
+
+app.use(stormpath.init(app, {
+  expand: {
+    customData: true
+  },
+  web: {
+    register: {
+      form:{
+        fields:{
+          city:{
+            enabled: true,
+            label: 'City',
+            name: 'city',
+            required: true,
+            type: 'text'
+          },
+          genre:{
+            enabled: true,
+            label: 'Preferred Genre',
+            name: 'genre',
+            required: true,
+            type: 'text'
+          },
+        }  
+      }
+    }
+  }
+
+}));
 
 /**
  * Application settings.
@@ -44,17 +81,17 @@ app.post('/callouts', function(req, res){
   callouts.create(db, req, res);
 });
 
-app.get('/callouts', function(req, res){
-  callouts.retrieve(db, req, res);
-});
+// app.get('/callouts', function(req, res){
+//   callouts.retrieve(db, req, res);
+// });
 
-app.get('/callouts/:id', function(req, res){
-  callouts.retrieve(db, req, res);
-});
+// app.get('/callouts/:id', function(req, res){
+//   callouts.retrieve(db, req, res);
+// });
 
-app.delete('/callouts/:id', function(req, res){
-  callouts.delete(db, req, res);
-});
+// app.delete('/callouts/:id', function(req, res){
+//   callouts.delete(db, req, res);
+// });
 
 app.put('/callouts/:id', function(req, res){
   callouts.update(db, req, res);
@@ -76,17 +113,24 @@ app.get('/songs/:id', function(req, res) {
 app.delete('/songs/:id', function(req, res) {
   songs.delete(db, req, res);
 });
-/**
- * Stormpath initialization.
- */
 
-console.log('Initializing Stormpath');
+app.get('/users/:userID/conversations',stormpath.getUser, function(req,res){
+  conversations.retrieve_conversations(db,req,res);
+});
 
-app.use(stormpath.init(app, {
-  expand: {
-    customData: true
-  }
-}));
+app.post('/users/:userID/conversations', function(req,res){
+  conversations.create_conversation(db,req,res);
+});
+
+app.get('/users/:userID/conversations/:conversationID',stormpath.getUser, function(req,res){
+  //console.log("THE CONVERSATION ID IS: "+req.params.conversationID);
+  conversations.retrieve_messages(db,req,res);
+});
+
+app.post('/users/:userID/conversations/:conversationID',stormpath.getUser, function(req,res){
+  conversations.create_message(db,req,res);
+});
+
 
 /**
  * Route initialization.
@@ -96,6 +140,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'lib')));
+app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use('/', routes);
 
 app.on('stormpath.ready',function () {
@@ -132,11 +177,18 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
 /**
- * Start the web server.
+ * Handle chat connection
  */
-var port = process.env.PORT || 3000;
-app.listen(port, function () {
-  console.log('Server listening on http://localhost:' + port);
+io.on('connection',function(socket){
+  console.log('a user connected');
 });
 
+/**
+ * Start the web server. server.listen not app.listen for chat.io
+ */
+var port = process.env.PORT || 3000;
+server.listen(port,function(){
+  console.log('Server listening on http://localhost:' + port);
+});
