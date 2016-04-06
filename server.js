@@ -17,7 +17,7 @@ var routes = require('./lib/routes');
 var db = mysql.createConnection({
   host: '127.0.0.1',
   user: 'root',
-  password: 'needforspeed666',
+  password: 'prodigus23',
   database: 'collaborama'
 });
 
@@ -81,21 +81,18 @@ app.post('/callouts', function(req, res){
   callouts.create(db, req, res);
 });
 
-// app.get('/callouts', function(req, res){
-//   callouts.retrieve(db, req, res);
-// });
 
 // app.get('/callouts/:id', function(req, res){
 //   callouts.retrieve(db, req, res);
 // });
 
-// app.delete('/callouts/:id', function(req, res){
-//   callouts.delete(db, req, res);
-// });
-
-app.put('/callouts/:id', function(req, res){
-  callouts.update(db, req, res);
+app.delete('/callouts/:id', function(req, res){
+  callouts.delete(db, req, res);
 });
+
+// app.put('/callouts/:id', function(req, res){
+//   callouts.update(db, req, res);
+// });
 
 
 app.get('/songs', function(req, res) {
