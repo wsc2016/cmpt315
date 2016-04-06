@@ -25,6 +25,9 @@ nav.navbar.navbar-default.navbar-static-top
           li(class='#{nav.Explore}')
             a(href='/explore') Explore
 
+          li(class='#{nav.Collaborators}')
+            a(href='/collaborators') Collaborators
+
       if user
         form(action='/logout', method='POST', id="logout_form")
           ul.nav.navbar-nav.navbar-right
