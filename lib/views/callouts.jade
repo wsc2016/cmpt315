@@ -6,14 +6,33 @@ block vars
 block content
 
 	if user
+		if own
+			each val in JSON.parse(messages)
+				div.callouts
+					div.panel-body					
+						div.panel.panel-info
+							div.panel-heading.= val.name 
+							div.panel-body 
+								form.form-horizontal(method='post', action='/callouts/edit/'+val.id)
+									div.form-group
+										label.control-label.col-sm-4 
+										div.col-sm-4
+											input.form-control(type='text', name='message', value=val.message)
 
-		h2.text-center See Whats Happening in #{user.customData.city}
+									div.form-group
+										div.col-sm-offset-4.col-sm-4
+											button.btn.btn-default(type='submit') Re-Post
+
+									div.deleteButton
+										a(href='delete/'+val.id)
+											button.btn.btn-danger(type='submit') Delete
+		else
+			each val in JSON.parse(messages)
+				div.callouts
+					div.panel-body					
+						div.panel.panel-info
+							div.panel-heading.= val.name 
+							div.panel-body= val.message
 
 
-		div.callouts
-			div.panel-body
-				each val in JSON.parse(messages)
-					div.panel.panel-info
-						div.panel-heading.= val.name
-						div.panel-body= val.message
-	hr
+

@@ -16,14 +16,14 @@ nav.navbar.navbar-default.navbar-static-top
           li(class='#{nav.Profile}')
             a(href='/profile') My Profile
 
-          li(class='#{nav.Profile}')
-            a(href='/callouts') Callouts
-
           li(class='#{nav.Music}')
             a(href='/music') Music
 
           li(class='#{nav.Explore}')
             a(href='/explore') Explore
+
+          li(class='#{nav.Collaborators}')
+            a(href='/collaborators') Collaborators
 
       if user
         form(action='/logout', method='POST', id="logout_form")

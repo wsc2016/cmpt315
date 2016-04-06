@@ -6,7 +6,10 @@
 	position: absolute;
 }
 .callouts{
-	width: 50%;
+	width: 85%;
 	height: auto;
 	margin: auto;
+}
+.deleteButton{
+	float: right;
 }
