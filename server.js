@@ -2,6 +2,7 @@ var express = require('express');
 var stormpath = require('express-stormpath');
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -75,6 +76,7 @@ app.locals.siteName = 'Collaborama';
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(methodOverride('_method'));
 
 // API routes
 app.post('/callouts', function(req, res){
@@ -141,6 +143,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'lib')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
+app.use(express.static(path.join(__dirname, 'lib/css')));
 app.use('/', routes);
 
 app.on('stormpath.ready',function () {
