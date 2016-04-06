@@ -88,13 +88,15 @@ app.post('/callouts', function(req, res){
 //   callouts.retrieve(db, req, res);
 // });
 
-app.delete('/callouts/:id', function(req, res){
-  callouts.delete(db, req, res);
-});
-
-// app.put('/callouts/:id', function(req, res){
-//   callouts.update(db, req, res);
+// app.delete('/callouts/id',stormpath.getUser, function(req, res){
+//   console.log('server');
+//   callouts.delete(db, req, res);
 // });
+
+app.put('/callouts/:id', function(req, res){
+  console.log('serverjs');
+  callouts.update(db, req, res);
+});
 
 
 app.get('/songs', function(req, res) {
