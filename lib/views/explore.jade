@@ -1,8 +1,34 @@
 extends ./layout.jade
 
 block content
-	h1 Explore
 	h3= title
+	div.container
+		div.content
+			form(action='/explore', method='GET')
+				div.form-group
+					div.col-sm-4
+						label.control-label.col-sm-4 Genre
+						select.form-control(type='text', name='genre')
+							option(value='')
+							each entry in unique_genres
+								if default_genre == entry
+									option(selected="selected", value=entry) !{entry}
+								else
+									option(value=entry) !{entry}
+					div.col-sm-4
+						label.control-label.col-sm-4 City
+						select.form-control(type='text', name='city')
+							option(value='')
+							each entry in unique_cities
+								if default_city == entry
+									option(selected="selected", value=entry) !{entry}
+								else
+									option(value=entry) !{entry}
+					div.col-sm-4
+						button.btn.btn-default(style='float: left;', type='submit') Explore
+
+
+
 	script(src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js")
 	div.panel.panel-default
 		div.panel-heading.
@@ -18,13 +44,10 @@ block content
 
 				SC.resolve(track_url).then(function(resolved) {
 					console.log('resolve response: ', resolved);
-					SC.stream('/tracks/' + resolved.id).then(function(player){
-					  player.play();
-					});
+					document.getElementsByName('player')[0].src = 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + resolved.id + '&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&visual=true';
 				});
 
-			button.btn.btn-default(style='float: left;', input type="button", onclick="history.go(-1);") Previous
+			iframe(name='player', width='100%', height='450', scrolling='no', frameborder='no')
 
-			form(action='/explore', method='GET')
-				button.btn.btn-default(style='float: right;', type='submit') Next
+			button.btn.btn-default(style='float: left;', input type="button", onclick="history.go(-2);") Previous
 
