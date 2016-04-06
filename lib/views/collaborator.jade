@@ -1,0 +1,19 @@
+extends ./layout.jade
+
+block vars
+    - var title = 'Collaborator Profile'
+    - var email = emailz
+block content
+
+    if user
+        h2.text-left Collaborator Profile
+        div.panel.panel-primary
+            div.panel-body
+                h1.text-center !{firstName} !{lastName}
+                h2.text-center Favored Genre: !{genre}
+                h2.text-center Location: !{city}
+                form.form-horizontal(method='post', action='/collaborators')
+                    div.form-group
+                        div.col-sm-offset-5.col-sm-5
+                            button.btn.btn-default(type='submit', name='email', value=email) Add as collaborator
+
