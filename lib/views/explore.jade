@@ -1,8 +1,9 @@
 extends ./layout.jade
 
 block content
+	h2 Explore
 	h3= title
-	div.container
+	div.panel.panel-primary
 		div.content
 			form(action='/explore', method='GET')
 				div.form-group
@@ -47,12 +48,13 @@ block content
 					client_id: '29ad85914f56b3fbb4438ec12a6cd48a'
 				});
 
-				SC.resolve(track_url).then(function(resolved) {
-					console.log('resolve response: ', resolved);
-					document.getElementsByName('player')[0].src = 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + resolved.id + '&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&visual=true';
-				});
 
-			iframe(name='player', width='100%', height='450', scrolling='no', frameborder='no')
+					SC.resolve(track_url).then(function(resolved) {
+						console.log('resolve response: ', resolved);
+						document.getElementsByName('player')[0].src = 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + resolved.id + '&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&visual=true';
+					});
 
-			button.btn.btn-default(style='float: left;', input type="button", onclick="history.go(-2);") Previous
+				iframe(name='player', width='100%', height='450', scrolling='no', frameborder='no')
+
+				button.btn.btn-default(style='float: left;', input type="button", onclick="history.go(-2);") Previous
 

@@ -13,6 +13,7 @@ script(src='/../socket.io/socket.io.js')
 script(type='text/javascript').
     var socket=io();
 ul.chat-sidebar(ng-controller="chatSidebarCtrl")
+    h5.text-center Collaborators
     li.sidebar-name(ng-repeat="name in names")
         p(ng-click="make_popup(name.conversationID,name.firstName+' '+name.lastName)")
              {{name.firstName}} {{name.lastName}}
