@@ -4,8 +4,9 @@ block content
 	h3= title
 	script(src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js")
 	div.panel.panel-default
-		div.panel-heading.
-			!{name}
+		div.panel-heading
+			!{name} by 
+			a(href='/profiles/'+email) !{artist}
 		div.panel-body
 			script.
 				var track_url = !{url};
