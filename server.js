@@ -2,6 +2,7 @@ var express = require('express');
 var stormpath = require('express-stormpath');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var mysql = require('mysql');
 
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -18,7 +19,7 @@ var db = require('./lib/modules/db');
 var db = mysql.createConnection({
   host: '127.0.0.1',
   user: 'root',
-  password: 'needforspeed666',
+  password: 'prodigus23',
   database: 'collaborama'
 });
 
