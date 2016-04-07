@@ -7,35 +7,61 @@ block content
 
 	if user
 
+
 		h2.text-center #{user.fullName}
 
 
 		div.panel.panel-primary
 			div.panel-heading.
 				Enter your profile information below, then save your changes
-			div.panel-body
-				each val in JSON.parse(user)
+			if complete
+				div.panel-body
+					each val in JSON.parse(user)
+						form.form-horizontal(method='post', action='/profile')
+
+							div.form-group
+								label.control-label.col-sm-4
+								div.col-sm-4
+									input.form-control(type='hidden', name='email', value=user.email)
+
+							div.form-group
+								label.control-label.col-sm-4 City
+								div.col-sm-4
+									input.form-control(type='text', name='city', value=val.city)
+
+							div.form-group
+								label.control-label.col-sm-4 Preferred Genre
+								div.col-sm-4
+									input.form-control(type='text', name='genre', value=val.genre)
+
+							div.form-group
+								div.col-sm-offset-4.col-sm-4
+									br
+									button.btn.btn-default(formaction='/profile',type='submit') Save
+			else
+				div.panel-body
 					form.form-horizontal(method='post', action='/profile')
 
 						div.form-group
-							label.control-label.col-sm-4 
+							label.control-label.col-sm-4
 							div.col-sm-4
-								input.form-control(type='hidden', name='email', value=val.id)
-					
+								input.form-control(type='hidden', name='email', value=user.email)
+
 						div.form-group
 							label.control-label.col-sm-4 City
 							div.col-sm-4
-								input.form-control(type='text', name='city', value=val.city)
-						
+								input.form-control(type='text', name='city', value="")
+
 						div.form-group
 							label.control-label.col-sm-4 Preferred Genre
 							div.col-sm-4
-								input.form-control(type='text', name='genre', value=val.genre)
+								input.form-control(type='text', name='genre', value="")
 
 						div.form-group
 							div.col-sm-offset-4.col-sm-4
 								br
-								button.btn.btn-default(type='submit') Save
+								button.btn.btn-default(formaction='/profile',type='submit')) Save
+
 			div.panel.panel-secondary
 				div.panel-heading.
 					Add or remove songs below
@@ -78,11 +104,11 @@ block content
 									td
 										form(action='/music/' + entry.id, method='GET')
 											button.btn.btn-default(type='submit')
-												span.glyphicon.glyphicon-headphones 
+												span.glyphicon.glyphicon-headphones
 												|  Listen
 									td !{entry.songname}
 									td !{entry.genre}
-									td 
+									td
 										a(href='http://'+entry.soundcloudurl) !{entry.soundcloudurl}
 									td
 										form(action='/songs/' + entry.id + '?_method=DELETE', method='POST')
