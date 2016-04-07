@@ -1,6 +1,5 @@
 var express = require('express');
 var stormpath = require('express-stormpath');
-var mysql = require('mysql');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
@@ -9,18 +8,11 @@ var cookieParser = require('cookie-parser');
 var favicon = require('serve-favicon');
 var path = require('path');
 
-
 var songs = require('./lib/modules/songs');
 var callouts = require('./lib/modules/callouts');
 var conversations = require('./lib/modules/conversations');
 var routes = require('./lib/routes');
-
-var db = mysql.createConnection({
-  host: '127.0.0.1',
-  user: 'root',
-  password: 'prodigus23',
-  database: 'collaborama'
-});
+var db = require('./lib/modules/db');
 
 /**
  * Create the Express application and socket.io server.

@@ -56,7 +56,6 @@ block content
 								th
 								th Song Name
 								th Genre
-								th City
 								th Soundcloud
 								th
 						tbody
@@ -70,7 +69,6 @@ block content
 												|  Listen
 									td !{entry.songname}
 									td !{entry.genre}
-									td !{entry.city}
 									td !{entry.soundcloudurl}
 									td
 										form(action='/songs/' + entry.id + '?_method=DELETE', method='POST')
