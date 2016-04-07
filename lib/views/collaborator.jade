@@ -9,11 +9,37 @@ block content
         h2.text-left Collaborator Profile
         div.panel.panel-primary
             div.panel-body
-                h1.text-center !{firstName} !{lastName}
-                h2.text-center Favored Genre: !{genre}
-                h2.text-center Location: !{city}
+                h2.text-center !{firstName} !{lastName}
+                h3.text-center Favored Genre: !{genre}
+                h3.text-center Location: !{city}
                 form.form-horizontal(method='post', action='/collaborators')
                     div.form-group
                         div.col-sm-offset-5.col-sm-5
                             button.btn.btn-default(type='submit', name='email', value=email) Add as collaborator
+            div.panel.panel-secondary
+                div.panel-heading.
+                    Listen to !{firstName}'s songs
+                div.panel-body
+                    table.table.table-hover
+                        thead
+                            tr
+                                th
+                                th Song Name
+                                th Genre
+                                th City
+                                th Soundcloud
+                                th
+                        tbody
+                            each entry in query_entries
+                                tr
 
+                                    td
+                                        form(action='/music/' + entry.id, method='GET')
+                                            button.btn.btn-default(type='submit')
+                                                span.glyphicon.glyphicon-headphones
+                                                |  Listen
+                                    td !{entry.songname}
+                                    td !{entry.genre}
+                                    td !{entry.city}
+                                    td !{entry.soundcloudurl}
+                                    td
