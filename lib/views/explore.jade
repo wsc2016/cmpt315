@@ -28,22 +28,26 @@ block content
 					div.col-sm-4
 						br
 						button.btn.btn-default(style='float: left;', type='submit') Explore
+					br
+					br
+					br
+					br
 
 
+	script(src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js")
+	div.panel.panel-default
+		div.panel-heading
+			!{name} by 
+			a(href='/profiles/'+email) !{artist}
+		div.panel-body
+			script.
+				var track_url = !{url};
+				track_url = 'http://' + track_url;
+				console.log(track_url);
+				SC.initialize({
+					client_id: '29ad85914f56b3fbb4438ec12a6cd48a'
+				});
 
-		script(src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js")
-		b &nbsp
-		div.container
-			div.panel-heading.
-				!{name}
-			div.panel-body
-				script.
-					var track_url = !{url};
-					track_url = 'http://' + track_url;
-					console.log(track_url);
-					SC.initialize({
-						client_id: '29ad85914f56b3fbb4438ec12a6cd48a'
-					});
 
 					SC.resolve(track_url).then(function(resolved) {
 						console.log('resolve response: ', resolved);

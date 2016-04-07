@@ -34,21 +34,34 @@ block content
 
 						div.form-group
 							div.col-sm-offset-4.col-sm-4
+								br
 								button.btn.btn-default(type='submit') Save
 			div.panel.panel-secondary
 				div.panel-heading.
 					Add or remove songs below
 				div.panel-body
 					form.form-horizontal(method='post', action='/songs')
-
-							div.form-group
-								label.control-label.col-sm-4 Soundcloud URL
+						div.form-group
+							div.col-sm-1
+							div.col-sm-3
+								label.control-label Song Name
+								input.form-control(type='text', name='songName')
+							div.col-sm-3
+								label.control-label Genre
+								input.form-control(type='text', name='genre')
+							div.col-sm-3
+								label.control-label Soundcloud URL
+								input.form-control(type='text', name='soundCloudURL')
+							div.col-sm-2
+								input.form-control(type='hidden', name='userID', value=userid)
+								br
 								div.col-sm-4
-									input.form-control(type='text', name='soundCloudURL')
-									input.form-control(type='hidden', name='userID', value=userid)
-								div.col-sm-4
-									button.btn.btn-default(type='submit')
-										span.glyphicon.glyphicon-plus
+								button.btn.btn-default(type='submit')
+									span.glyphicon.glyphicon-plus
+							br
+							br
+							br
+							br
 
 					table.table.table-hover
 						thead
@@ -56,7 +69,6 @@ block content
 								th
 								th Song Name
 								th Genre
-								th City
 								th Soundcloud
 								th
 						tbody
@@ -70,8 +82,8 @@ block content
 												|  Listen
 									td !{entry.songname}
 									td !{entry.genre}
-									td !{entry.city}
-									td !{entry.soundcloudurl}
+									td 
+										a(href='http://'+entry.soundcloudurl) !{entry.soundcloudurl}
 									td
 										form(action='/songs/' + entry.id + '?_method=DELETE', method='POST')
 											button.btn.btn-default(type='submit')

@@ -42,7 +42,8 @@ block content
 						th Song Name
 						th Genre
 						th City
-						th Soundcloud
+						th Collaborator
+
 				tbody
 					each entry in query_entries
 						tr
@@ -55,5 +56,5 @@ block content
 							td !{entry.songname}
 							td !{entry.genre}
 							td !{entry.city}
-							td !{entry.soundcloudurl}
-							
+							td 
+								a(href='/profiles/'+entry.userid) !{entry.firstName}
