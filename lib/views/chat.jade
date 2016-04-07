@@ -15,8 +15,7 @@ script(type='text/javascript').
 ul.chat-sidebar(ng-controller="chatSidebarCtrl")
     h5.text-center Collaborators
     li.sidebar-name(ng-repeat="name in names")
-        p(ng-click="make_popup(name.conversationID,name.firstName+' '+name.lastName)")
-             {{name.firstName}} {{name.lastName}}
+        p(ng-click="make_popup(name.conversationID,name.firstName+' '+name.lastName)", ng-dblclick="go_user_profile(name.id)") {{name.firstName}} {{name.lastName}}
 
 div.popup-box.chat-popup(id="id" ng-controller="chatPopupCtrl" ng-show="showpopup")
     div.popup-head

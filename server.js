@@ -15,14 +15,6 @@ var conversations = require('./lib/modules/conversations');
 var routes = require('./lib/routes');
 var db = require('./lib/modules/db');
 
-
-var db = mysql.createConnection({
-  host: '127.0.0.1',
-  user: 'root',
-  password: 'prodigus23',
-  database: 'collaborama'
-});
-
 /**
  * Create the Express application and socket.io server.
  */

@@ -1,4 +1,4 @@
-nav.navbar.navbar-default.navbar-static-top
+nav.navbar.navbar-default.navbar-fixed-top
   - var nav = {}; nav[title] = 'active'
   .container
     .navbar-header
@@ -23,7 +23,7 @@ nav.navbar.navbar-default.navbar-static-top
             a(href='/explore') Explore
 
           li(class='#{nav.Collaborators}')
-            a(href='/collaborators') Collaborators
+            a(href='/collaborators') Artists
 
       if user
         form(action='/logout', method='POST', id="logout_form")

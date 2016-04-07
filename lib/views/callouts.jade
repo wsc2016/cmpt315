@@ -25,7 +25,7 @@ block content
 
 									div.deleteButton
 										a(href='delete/'+val.id)
-											button.btn.btn-danger(type='submit') Delete
+											button.btn.btn-danger(type='submit', formaction="/callouts/delete/"+val.id,) Delete
 		else
 			each val in JSON.parse(messages)
 				div.callouts
