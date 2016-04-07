@@ -46,10 +46,12 @@ block content
         each val in JSON.parse(messages)
           
           div.panel.panel-info
-            div.panel-heading.= val.name
+            div.panel-heading.= val.name + "   (" + val.ts + ")"
+
             a(href="/callouts/"+val.id)
 
               div.panel-body= val.message
+
 
 
 
