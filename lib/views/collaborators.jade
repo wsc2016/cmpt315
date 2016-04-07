@@ -3,9 +3,9 @@
 extends ./layout.jade
 
 block content
-    h1 Collaborators
+    h2 Collaborators
     h3= title
-    div.container
+    div.panel.panel-primary
         div.content
             form.form-horizontal(method='get', action='/collaborators')
                 div.form-group
@@ -51,7 +51,7 @@ block content
                             td
                                 form(action='/profiles/' + entry.id, method='GET')
                                     button.btn.btn-default(type='submit')
-                                        span.glyphicon.glyphicon-headphones
+                                        span.glyphicon.glyphicon-eye-open
                                         |  View
 
                             td !{entry.firstName}
