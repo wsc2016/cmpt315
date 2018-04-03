@@ -23,43 +23,43 @@ CREATE TABLE IF NOT EXISTS callouts(
   PRIMARY KEY (`id`));
 
 CREATE TABLE IF NOT EXISTS songs(
-id INT NOT NULL AUTO_INCREMENT,
-soundcloudurl VARCHAR(255) NULL,
-songname VARCHAR(255) NULL,
-genre VARCHAR(45) NULL,
-releasedate DATETIME NULL,
-uploaddate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-userid VARCHAR(256) NULL,
-PRIMARY KEY (id));
+  id INT NOT NULL AUTO_INCREMENT,
+  soundcloudurl VARCHAR(255) NULL,
+  songname VARCHAR(255) NULL,
+  genre VARCHAR(45) NULL,
+  releasedate DATETIME NULL,
+  uploaddate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  userid VARCHAR(256) NULL,
+  PRIMARY KEY (id));
 
 CREATE TABLE IF NOT EXISTS conversations(
-id INT(10) NOT NULL AUTO_INCREMENT,
-timeInitiated DATETIME NOT NULL DEFAULT NOW(),
-PRIMARY KEY (id));
+  id INT(10) NOT NULL AUTO_INCREMENT,
+  timeInitiated DATETIME NOT NULL DEFAULT NOW(),
+  PRIMARY KEY (id));
 
 CREATE TABLE IF NOT EXISTS conversants(
-userID VARCHAR(255) NOT NULL,
-conversationID INT(10) NOT NULL,
-PRIMARY KEY (userID, conversationID));
+  userID VARCHAR(255) NOT NULL,
+  conversationID INT(10) NOT NULL,
+  PRIMARY KEY (userID, conversationID));
 
 CREATE TABLE IF NOT EXISTS messages(
-userID VARCHAR(255) NOT NULL,
-id INT(10) NOT NULL AUTO_INCREMENT,
-conversationID INT(10) NOT NULL,
-timeSent DATETIME NOT NULL DEFAULT NOW(),
-content VARCHAR(50) NOT NULL default "message",
-PRIMARY KEY (id));
+  userID VARCHAR(255) NOT NULL,
+  id INT(10) NOT NULL AUTO_INCREMENT,
+  conversationID INT(10) NOT NULL,
+  timeSent DATETIME NOT NULL DEFAULT NOW(),
+  content VARCHAR(50) NOT NULL default "message",
+  PRIMARY KEY (id));
 
 CREATE TABLE IF NOT EXISTS users(
-id VARCHAR(255) NOT NULL,
-firstName VARCHAR(25) NOT NULL,
-lastName VARCHAR(25) NOT NULL,
-city VARCHAR (45) NOT NULL,
-genre VARCHAR (45) NOT NULL,
-PRIMARY KEY (id));
+  id VARCHAR(255) NOT NULL,
+  firstName VARCHAR(25) NOT NULL,
+ lastName VARCHAR(25) NOT NULL,
+  city VARCHAR (45) NOT NULL,
+  genre VARCHAR (45) NOT NULL,
+  PRIMARY KEY (id));
 
 
-4. Change database password in server.js to match you're own sql persmissions 
+4. Change database password in server.js to match your own sql persmissions 
 
 
 5. run server locally 
